@@ -1,0 +1,79 @@
+.compositions {
+    padding-top: 1px;
+}
+
+.audio {
+    margin-bottom: 55px;
+    background: #f6f6f6;
+    display: flex;
+    flex-flow: wrap;
+
+    &__info {
+        position: relative;
+
+            // другой способ сделать стрелочку
+
+        &::after {
+        top: 50%;
+        z-index: 1;
+        transform: translateY(-50%); // подымаем на 50% размера элемента
+        }
+
+        &--left::after {
+            @include triangle(#f6f6f6, 12px, right);
+            right: 0;
+
+        }
+
+        &--right {
+            
+            &::after {
+                @include triangle(#f6f6f6, 12px, left);
+                left: 0;
+            }
+        }
+
+        @media (max-width: $mobile) {
+            &::after {
+                @include triangle(#f6f6f6, 12px, down);
+                top: auto;
+                bottom: -24px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+
+    }
+
+    &__block {
+        padding: 30px;
+    }
+
+    &__title {
+        font-size: 23px;
+        line-height: 25px;
+        letter-spacing: .2px;
+        margin-bottom: 30px;
+        color: #000;
+    }
+
+    &__description {
+        line-height: 25px;
+        margin-bottom: 55px;
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    &__video {
+        iframe {
+            @include size(100%);
+            min-height: 300px;
+        }
+    }
+
+}
